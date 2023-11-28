@@ -21,7 +21,8 @@
 */
 
 // node post.js
-const fetchApi = require("./reveryapi_post");
+const {fetchApi} = require("./reveryapi_post");
+
 
 const Garment = require("./models/database");
 
@@ -30,8 +31,8 @@ fetchApi()
     const garmentObject = {
         ...result,
         gender: "female",
-        category: "bottoms",
-        garment_img_url: "https://media.revery.ai/revery_client_images/symbol_189058/in_origin.png"
+        category: "tops",
+        garment_img_url: "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcQViNtfGEYpySfZrAwxuaPqw2lvrgvVj7OED9Tg1q0n1sqTEvnmayr3iqPHGRVZbia1y_r3efWamNjipQVJaUx6YkAxbRgKltYNJGc40zN60D8zwixeKcnZpzwufezJtjS2PtycOg&usqp=CAc"
     }
 
     const clothes = new Garment(garmentObject);

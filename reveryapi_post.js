@@ -1,10 +1,10 @@
-function getAuthenticationHeader(json=false) {
+function getAuthenticationHeader(json = false) {
     var pbkdf2 = require('pbkdf2')
-    let time =  parseInt(Date.now()/1000);
+    let time = parseInt(Date.now() / 1000);
     var derivedKey = pbkdf2.pbkdf2Sync(process.env.SECRET_KEY, time.toString(), 128, 32, 'sha256');
     derivedKey = derivedKey.toString('hex');
     if (json) {
-        return  new Headers({
+        return new Headers({
             "public_key": process.env.PUBLIC_KEY,
             "one_time_code": derivedKey,
             "timestamp": time,
@@ -12,7 +12,7 @@ function getAuthenticationHeader(json=false) {
             Accept: 'application/json',
         })
     } else {
-        return  new Headers({
+        return new Headers({
             "public_key": process.env.PUBLIC_KEY,
             "one_time_code": derivedKey,
             "timestamp": time,
@@ -30,9 +30,9 @@ const data = JSON.stringify({
 async function fetchApi() {
     const response = await fetch('https://api.revery.ai/console/v1/process_new_garment', {
         method: 'POST',
-        headers: getAuthenticationHeader(json=true),
+        headers: getAuthenticationHeader(json = true),
         body: data
-      }
+    }
     )
 
     const result = response.json();
@@ -40,4 +40,4 @@ async function fetchApi() {
     return result;
 }
 
-module.exports = fetchApi;
+module.exports = {fetchApi , getAuthenticationHeader};
