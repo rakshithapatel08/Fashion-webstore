@@ -17,13 +17,13 @@ const CardPage = () => {
     return (
         <Flex flexWrap="wrap" flexDirection="column">
             <Box>
-            <Text p={10} fontSize="4xl" color="gray.800" fontWeight="bold">Women Collections</Text>
+            <Text p={10} fontSize="4xl" color="white" fontWeight="bold">Women Collections</Text>
             <Flex flexWrap="wrap" justifyContent="center" alignItems="center" gap={10}>
                 {data?.map((product) => product.gender === "female" && <CardComponent product={product} key={product._id}/>)}
             </Flex>
             </Box>
             <Box>
-            <Text p={10} fontSize="4xl" color="gray.800" fontWeight="bold">Men Collections</Text>
+            <Text p={10} fontSize="4xl" color="white" fontWeight="bold">Men Collections</Text>
             <Flex flexWrap="wrap" justifyContent="center" alignItems="center" gap={10}>
                 {data?.map((product) => product.gender === "male" && <CardComponent product={product} key={product._id}/>)}
             </Flex>

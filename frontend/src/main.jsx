@@ -6,11 +6,16 @@ import { ChakraProvider } from "@chakra-ui/react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import CardPage from '../pages/CardPage.jsx';
 import TryOnPage from "../pages/TryOnPage.jsx";
+import Layout from '../components/Layout.jsx';
 
 const routes = createBrowserRouter([{
   path: "/",
-  element: <App/>,
+  element: <Layout/>,
   children: [
+    {
+      path: "/",
+      element: <App/>,
+    },
     {
       path: "/products",
       element: <CardPage/>,
@@ -24,8 +29,10 @@ const routes = createBrowserRouter([{
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <ChakraProvider>
-    <RouterProvider router={routes}>
-      <App />
-    </RouterProvider>
+  <RouterProvider router={routes}>
+  <Layout>
+    <App />
+  </Layout>
+  </RouterProvider>
   </ChakraProvider>
 )

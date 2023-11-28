@@ -12,29 +12,39 @@ const CardComponent = ({ product }) => {
         background: "rgba(255, 255, 255, 0.2)",
         borderRadius: "16px",
         boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
-        border: "1px solid rgba(255, 255, 255, 0.3)",
       }}
       borderRadius={10}
-      width={400}
+      width={300}
+      minH={450}
+      py={6}
     >
-      <Box py={10} px={2}>
+      <Box py={5} >
         <Image
           src={product.garment_img_url}
           alt="product-image"
-          width={300}
+          width={200}
           borderRadius={10}
+          mt={1}
         />
       </Box>
       <Flex flexDirection="column" justifyContent="center" alignItems="center">
-        <Text color="gray.800" fontSize="2xl" pt={2} fontWeight="bold">
+        <Text color="gray.800" fontSize="2xl" pt={1} fontWeight="bold">
           Product Name
         </Text>
-        <Text color="gray.600" fontSize="lg" pt={1} pb={3} fontWeight="500">
+        <Text color="gray.300" fontSize="lg" pb={2} fontWeight="500">
           Product Price
         </Text>
-        <Button color="white" bg="red" fontSize="md" mb={8}>
-          Buy Now
+        <Text color="gray.200" fontSize="sm" pb={5} fontWeight="500">
+          Product Description
+        </Text>
+        <Flex flexWrap="wrap" gap={4} pb={4}>
+        <Button borderRadius="none" color="white" bg="teal.500" fontSize="md" _hover={{bg:"teal.600"}}>
+          Add to Cart
         </Button>
+        <Button borderRadius="none" color="gray.800" bg="white" fontSize="md" _hover={{bg:"gray.200"}}>
+          Try On
+        </Button>
+        </Flex>
       </Flex>
     </Flex>
   );
