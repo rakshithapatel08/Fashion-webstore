@@ -4,8 +4,8 @@ import App from './App.jsx'
 import { ChakraProvider } from "@chakra-ui/react";
 // import './index.css'
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import CardPage from '../components/CardPage.jsx';
-import TryOnPage from "../components/TryOnPage.jsx";
+import CardPage from '../pages/CardPage.jsx';
+import TryOnPage from "../pages/TryOnPage.jsx";
 
 const routes = createBrowserRouter([{
   path: "/",
