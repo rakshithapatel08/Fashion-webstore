@@ -9,33 +9,32 @@ const CardComponent = ({ product }) => {
       alignItems="center"
       sx={{
         backdropFilter: "blur(10px)",
-        background: "rgba(255, 255, 255, 0.2)",
-        borderRadius: "16px",
         boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
       }}
-      borderRadius={10}
-      width={300}
+      background="whiteAlpha.100"
+      width={340}
       minH={450}
-      py={6}
+      pb={6}
     >
-      <Box py={5} >
+      <Box pb={5} >
         <Image
           src={product.garment_img_url}
           alt="product-image"
-          width={200}
-          borderRadius={10}
-          mt={1}
+          width={340}
+          height={250}
+          objectFit="contain"
+          background="white"
         />
       </Box>
       <Flex flexDirection="column" justifyContent="center" alignItems="center">
-        <Text color="gray.800" fontSize="2xl" pt={1} fontWeight="bold">
-          Product Name
+        <Text color="white" fontSize="2xl" pt={1} fontWeight="600">
+          {product.name}
         </Text>
-        <Text color="gray.300" fontSize="lg" pb={2} fontWeight="500">
-          Product Price
+        <Text color="gray.500" fontSize="lg" pb={2} fontWeight="500">
+          ${product.price}
         </Text>
         <Text color="gray.200" fontSize="sm" pb={5} fontWeight="500">
-          Product Description
+          {product.desc.slice(0,30)}...
         </Text>
         <Flex flexWrap="wrap" gap={4} pb={4}>
         <Button borderRadius="none" color="white" bg="teal.500" fontSize="md" _hover={{bg:"teal.600"}}>
