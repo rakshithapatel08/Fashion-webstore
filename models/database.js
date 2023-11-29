@@ -15,6 +15,9 @@ const fashionSchema = new mongoose.Schema({
     category: String,
     garment_id: String,
     garment_img_url: String,
+    name:String,
+    price:Number,
+    desc:String,
     success: Boolean
 }) 
 

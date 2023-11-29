@@ -30,9 +30,12 @@ fetchApi()
 .then((result) => {
     const garmentObject = {
         ...result,
-        gender: "female",
+        gender: "male",
         category: "tops",
-        garment_img_url: "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcQViNtfGEYpySfZrAwxuaPqw2lvrgvVj7OED9Tg1q0n1sqTEvnmayr3iqPHGRVZbia1y_r3efWamNjipQVJaUx6YkAxbRgKltYNJGc40zN60D8zwixeKcnZpzwufezJtjS2PtycOg&usqp=CAc"
+        garment_img_url: "https://media.revery.ai/revery_client_images/symbol_183774/in_origin.png",
+        name:"Classic Crew Neck Sweater",
+        price:39,
+        desc:"Elevate your winter wardrobe with our classic crew neck sweater. Crafted from soft and warm knit fabric, this timeless piece offers both comfort and style. The versatile design makes it perfect for layering or wearing on its own. The ribbed cuffs and hem add a touch of sophistication to this essential cold-weather staple."
     }
 
     const clothes = new Garment(garmentObject);
