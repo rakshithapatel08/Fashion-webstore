@@ -16,3 +16,15 @@
 ::-webkit-scrollbar-thumb:hover {
     background: rgb(2, 92, 92);
 }
+
+.chakra-menu__menu-button.css-179rocb {
+    border: 2px solid #38B2AC;
+}
+
+.css-179rocb:active, .css-179rocb[data-active], .css-179rocb:hover, .css-179rocb[data-hover] {
+    background: transparent !important;
+}
+
+.chakra-menu__menu-button.css-179rocb svg path {
+    color: #4FD1C5;
+}
