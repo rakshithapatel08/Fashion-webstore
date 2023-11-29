@@ -1,4 +1,4 @@
-import { Flex, UnorderedList, ListItem, Text, Box } from "@chakra-ui/react";
+import { Flex, UnorderedList, ListItem, Text, Box, Image } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { Outlet } from "react-router-dom";
 
@@ -11,6 +11,7 @@ const Navbar = () => {
         <Link to="/"><ListItem _hover={{ color: "teal.400" }}>Home</ListItem></Link>
         <Link to="#about"><ListItem _hover={{ color: "teal.400" }}>About</ListItem></Link>
         <Link to="/products"><ListItem _hover={{ color: "teal.400" }}>Collections</ListItem></Link>
+        <ListItem><Image src="../iconAssets/cart.png"/></ListItem>
       </UnorderedList>
     </Flex>
       <Outlet />
