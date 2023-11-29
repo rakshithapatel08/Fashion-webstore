@@ -22,6 +22,25 @@ app.get("/api/products", (request, response) => {
         .catch(error => console.log(error))
 });
 
+app.get("/api/products", (request, response) => {
+    Garment.find({})
+        .then((garments) => {
+            response.status(200).json(garments);
+        })
+        .catch(error => console.log(error))
+});
+
+app.get("/api/products/:id", (request, response) => {
+    
+    const id = request.params.id;
+
+    Garment.findById(id)
+    .then(result => {
+        response.json(result);
+    })
+    .catch(error => console.log(error))
+});
+
 app.get("/api/tryon", async (request, response) => {
 
     function getAuthenticationHeader(json = false) {

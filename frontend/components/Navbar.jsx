@@ -16,7 +16,7 @@ import { useCustomContext } from "../context/appContext";
 
 const Navbar = () => {
   const [isMobileTab] = useMediaQuery("(max-width: 700px)");
-  const { showCart, setShowCart } = useCustomContext();
+  const { showCart, setShowCart, totalQty } = useCustomContext();
 
   return (
     <Box>
@@ -66,13 +66,15 @@ const Navbar = () => {
             <Link to="/products">
               <ListItem _hover={{ color: "teal.400" }}>Collections</ListItem>
             </Link>
-            <Flex fontSize="2xl" alignItems="center" color="teal.500"> 
+            <Flex fontSize="2xl" alignItems="center" color="teal.500" position="relative"> 
               <Icon as={MdShoppingCart} cursor="pointer" onClick={() => setShowCart(true)}/>
+              <Flex color="whiteAlpha.900" bg="gray.800" borderRadius="50%" width={5} height={5} fontSize="xs" justifyContent="center" alignItems="center" position="absolute" top={-2} right={-2}>{totalQty}</Flex>
             </Flex>
           </UnorderedList>
         )}
       </Flex>
       {showCart && <Cart/>}
+     
       <Outlet />
     </Box>
   );

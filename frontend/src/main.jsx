@@ -6,8 +6,9 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import CardPage from '../pages/CardPage.jsx';
 import TryOnPage from "../pages/TryOnPage.jsx";
 import Layout from '../components/Layout.jsx';
-import './index.css'
 import AppContextWrapper from '../context/appContext';
+import DetailsPage from '../pages/DetailsPage.jsx';
+import './index.css';
 
 const routes = createBrowserRouter([{
   path: "/",
@@ -25,7 +26,10 @@ const routes = createBrowserRouter([{
       path: "/tryon",
       element: <TryOnPage/>,
     },
-   
+    {
+      path: "/products/:id",
+      element: <DetailsPage/>,
+    },
   ]
 }]);
 

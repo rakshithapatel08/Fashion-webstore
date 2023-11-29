@@ -40,11 +40,11 @@ const Carousel = () => {
   return (
     <Box pt={20} pb="30px" w="100vw">
     <Slider {...settings}>
-      <CarouselCard image={data[0].garment_img_url} />
-      <CarouselCard image={data[1].garment_img_url} />
-      <CarouselCard image={data[2].garment_img_url} />
-      <CarouselCard image={data[3].garment_img_url} />
-      <CarouselCard image={data[4].garment_img_url} />
+      <CarouselCard image={data[0].garment_img_url} id={data[0]._id}/>
+      <CarouselCard image={data[1].garment_img_url} id={data[1]._id}/>
+      <CarouselCard image={data[2].garment_img_url} id={data[2]._id}/>
+      <CarouselCard image={data[3].garment_img_url} id={data[3]._id}/>
+      <CarouselCard image={data[4].garment_img_url} id={data[4]._id}/>
     </Slider>
     </Box>
   );

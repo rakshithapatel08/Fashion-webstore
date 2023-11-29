@@ -6,14 +6,8 @@ import { useCustomContext } from "../context/appContext";
 const Cart = () => {
   const [isMobile] = useMediaQuery("(max-width: 600px)");
   const [isTab] = useMediaQuery("(max-width: 1000px)");
-  const { setShowCart } = useCustomContext();
-
-  const cartTemp = {
-    garment_img_url:
-      "https://media.revery.ai/revery_client_images/symbol_189014/in_origin.png",
-    name: "product",
-    price: 89,
-  };
+  const { setShowCart, totalQty, totalPrice, cartData } = useCustomContext();
+  
 
   return (
     <Flex
@@ -32,10 +26,10 @@ const Cart = () => {
       <Icon as={CloseIcon} position="absolute" right="4%" top="4%" cursor="pointer" onClick={() => setShowCart(false)}/> 
       <Flex gap={4} alignItems="center" jusytifyContent="center" p={4}>
         <Text fontSize="2xl">Cart Items</Text>
-        <Text fontSize="md" color="gray.200">(0 items)</Text>
+        <Text fontSize="md" color="gray.200">({totalQty} items)</Text>
       </Flex>
       <Flex flexDirection="column" mt={5} mb={150} gap={4} h="60%" overflowY="scroll">
-        {[cartTemp, cartTemp, cartTemp, cartTemp, cartTemp].map((cartItem, index) => (
+        {cartData.map((cartItem, index) => (
           <CartCard key={cartItem?._id || index} cartItem={cartItem} />
         ))}
       </Flex>
@@ -48,7 +42,7 @@ const Cart = () => {
       >
         <Flex justifyContent="space-between" w="60%" m="auto" py={4}>
           <Text>Subtotal</Text>
-          <Text>TotalPrice</Text>
+          <Text>${totalPrice}</Text>
         </Flex>
         <Button
           w="40%"

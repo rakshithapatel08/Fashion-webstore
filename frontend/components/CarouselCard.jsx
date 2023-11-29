@@ -1,10 +1,12 @@
 import { Flex, Image, useMediaQuery } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 
-const CarouselCard = ({ image }) => {
+const CarouselCard = ({ image, id }) => {
   const [isMobile] = useMediaQuery("(max-width: 950px)");
   const [isTab] = useMediaQuery("(max-width: 1280px)");
 
   return (
+    <Link to={`/products/${id}`}>
     <Flex
       w={isMobile ? 280 : isTab ? 260 : 380}
       h={isMobile ? 300 : isTab ? 280 : 400}
@@ -24,6 +26,7 @@ const CarouselCard = ({ image }) => {
         borderRadius={10}
       />
     </Flex>
+    </Link>
   );
 };
 
