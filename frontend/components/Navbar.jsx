@@ -11,9 +11,12 @@ import { Link } from "react-router-dom";
 import { Outlet } from "react-router-dom";
 import MenuComponent from "./MenuComponent";
 import { MdShoppingCart } from "react-icons/md";
+import Cart from "./Cart";
+import { useCustomContext } from "../context/appContext";
 
 const Navbar = () => {
   const [isMobileTab] = useMediaQuery("(max-width: 700px)");
+  const { showCart, setShowCart } = useCustomContext();
 
   return (
     <Box>
@@ -64,11 +67,12 @@ const Navbar = () => {
               <ListItem _hover={{ color: "teal.400" }}>Collections</ListItem>
             </Link>
             <Flex fontSize="2xl" alignItems="center" color="teal.500"> 
-              <Icon as={MdShoppingCart} />
+              <Icon as={MdShoppingCart} cursor="pointer" onClick={() => setShowCart(true)}/>
             </Flex>
           </UnorderedList>
         )}
       </Flex>
+      {showCart && <Cart/>}
       <Outlet />
     </Box>
   );
