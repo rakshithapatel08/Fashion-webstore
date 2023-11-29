@@ -6,7 +6,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import CardPage from '../pages/CardPage.jsx';
 import TryOnPage from "../pages/TryOnPage.jsx";
 import Layout from '../components/Layout.jsx';
-import './index.css'
+import AppContextWrapper from '../context/appContext';
+import './index.css';
 
 const routes = createBrowserRouter([{
   path: "/",
@@ -29,10 +30,12 @@ const routes = createBrowserRouter([{
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <ChakraProvider>
+  <AppContextWrapper>
   <RouterProvider router={routes}>
   <Layout>
     <App />
   </Layout>
   </RouterProvider>
+  </AppContextWrapper>
   </ChakraProvider>
 )
