@@ -1,6 +1,5 @@
 .slick-slider.slick-initialized {
   margin: auto;
-  padding-left: 1.75rem;
   width: 90vw;
 }
 
@@ -11,11 +10,35 @@
   height: 1rem;
 }
 
- .slick-next:before {
-  font-size: 2.75rem !important;
+.slick-next:before {
+  font-size: 1.75rem !important;
 }
 
 .slick-prev:before {
+  font-size: 1.75rem !important;
+}
 
-    font-size: 2.75rem !important;
+.slick-dots {
+  bottom: -40px;
+}
+
+.slick-dots li button:before, .slick-dots li.slick-active button:before{
+  color: white;
+}
+
+.slick-active div {
+  display: flex;
+  justify-content: center;
+}
+
+.slick-slide.slick-active.slick-center.slick-current img{
+  transform: scale(1.1,1.1);
+  transition: transform 0.5s ease;
+}
+
+@media screen and (max-width: 800px) {
+  .slick-slider.slick-initialized {
+    padding-left: 0.75rem;
+    width: 70vw;
+  }
 }
