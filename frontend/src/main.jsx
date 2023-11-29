@@ -7,6 +7,7 @@ import CardPage from '../pages/CardPage.jsx';
 import TryOnPage from "../pages/TryOnPage.jsx";
 import Layout from '../components/Layout.jsx';
 import './index.css'
+import AppContextWrapper from '../context/appContext';
 
 const routes = createBrowserRouter([{
   path: "/",
@@ -24,10 +25,7 @@ const routes = createBrowserRouter([{
       path: "/tryon",
       element: <TryOnPage/>,
     },
-    {
-      path: "/details",
-      element: <DetailsPage/>
-    },
+   
   ]
 }]);
 
