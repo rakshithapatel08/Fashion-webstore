@@ -65,6 +65,13 @@ const AppContextWrapper = ({ children }) => {
         toast.success(`${product.name} added successfully`);
     }
 
+    const removeItem = (cartProduct) =>{
+        const newCartData = cartData.filter((cartItem)=> cartItem._id !== cartProduct._id);
+        setCartData(newCartData);
+        setTotalQty(totalQty - cartProduct.quantity)
+        setTotalPrice(totalPrice - cartProduct.quantity * cartProduct.price)
+    }
+
     return (
         <AppContext.Provider value={{
             showCart,
@@ -79,7 +86,8 @@ const AppContextWrapper = ({ children }) => {
             setCartData,
             handleAdd,
             handleInc,
-            handleDec
+            handleDec,
+            removeItem
         }}>
             {children}
         </AppContext.Provider>

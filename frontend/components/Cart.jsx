@@ -31,14 +31,14 @@ const Cart = () => {
       top="5%"
       left="50%"
       transform="translate(-50%)"
-      maxH="90%"
+      h="90%"
     >
       <Icon as={CloseIcon} position="absolute" right="4%" top="4%" cursor="pointer" onClick={() => setShowCart(false)}/> 
       <Flex gap={4} alignItems="center" justifyContent="center" p={4}>
         <Text fontSize="2xl">Cart Items</Text>
         <Text fontSize="md" color="gray.200">({totalQty} items)</Text>
       </Flex>
-      <Flex flexDirection="column" mt={5} mb={150} gap={4} h="60%" overflowY="scroll">
+      <Flex flexDirection="column" mt={5} mb={150} gap={4} maxH="60%" overflowY="scroll">
         {cartData.map((cartItem, index) => (
           <CartCard key={cartItem?._id || index} cartItem={cartItem} />
         ))}

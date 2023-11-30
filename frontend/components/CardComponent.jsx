@@ -1,11 +1,16 @@
 import { Flex, Box, Image, Text, Button } from "@chakra-ui/react";
 import { useCustomContext } from "../context/appContext";
 import { Link } from "react-router-dom"
+import { useEffect } from "react";
 
 const CardComponent = ({ product }) => {
 
-  const { qty, handleAdd } = useCustomContext();
+  const { qty, handleAdd, setQty } = useCustomContext();
   
+  useEffect(()=>{
+    setQty(1)
+  },[]);
+
   return (
     <Flex
       flexDirection="column"
@@ -43,7 +48,10 @@ const CardComponent = ({ product }) => {
           {product.desc.slice(0,30)}...
         </Text>
         <Flex flexWrap="wrap" gap={4} pb={4}>
-        <Button borderRadius="none" color="white" bg="teal.500" fontSize="md" _hover={{bg:"teal.600"}} onClick={()=>handleAdd(product, qty)}>
+        <Button borderRadius="none" color="white" bg="teal.500" fontSize="md" _hover={{bg:"teal.600"}} 
+        onClick={()=>{
+          handleAdd(product, qty)       
+          }}>
           Add to Cart
         </Button>
         <Button borderRadius="none" color="gray.800" bg="white" fontSize="md" _hover={{bg:"gray.200"}}>
