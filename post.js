@@ -32,10 +32,10 @@ fetchApi()
         ...result,
         gender: "male",
         category: "tops",
-        garment_img_url: "https://media.revery.ai/revery_client_images/symbol_179805/in_origin.png",
-        name:"xxxxx",
-        price:39,
-        desc:"Elevate your winter wardrobe with our classic crew neck sweater. Crafted from soft and warm knit fabric, this timeless piece offers both comfort and style. The versatile design makes it perfect for layering or wearing on its own. The ribbed cuffs and hem add a touch of sophistication to this essential cold-weather staple."
+        garment_img_url: "https://media.revery.ai/revery_client_images/symbol_184875/in_origin.png",
+        name:"Athletic Performance Tee",
+        price:27,
+        desc:"Unleash your inner athlete with our performance tee. Designed for both comfort and functionality, this hoodie features moisture-wicking fabric to keep you cool and dry during workouts. The ergonomic design and stretchy material provide freedom of movement, making it an ideal choice for your active lifestyle. Upgrade your fitness gear with this high-performance hoodie"
     }
 
     const clothes = new Garment(garmentObject);
