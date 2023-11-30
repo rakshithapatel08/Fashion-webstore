@@ -2,12 +2,22 @@ import { Box, Button, Flex, Icon, Text, useMediaQuery } from "@chakra-ui/react";
 import CartCard from "./CartCard";
 import { CloseIcon } from "@chakra-ui/icons";
 import { useCustomContext } from "../context/appContext";
+import axios from "axios";
 
 const Cart = () => {
   const [isMobile] = useMediaQuery("(max-width: 600px)");
   const [isTab] = useMediaQuery("(max-width: 1000px)");
   const { setShowCart, totalQty, totalPrice, cartData } = useCustomContext();
   
+  const handleBuy = () => {
+    axios.post("http://localhost:3001/api/payment", cartData)
+    .then(session => session.data)
+    .then(data => {
+      if(data.url) {
+        window.location.href = data.url;
+      }
+    })
+  }
 
   return (
     <Flex
@@ -24,7 +34,7 @@ const Cart = () => {
       maxH="90%"
     >
       <Icon as={CloseIcon} position="absolute" right="4%" top="4%" cursor="pointer" onClick={() => setShowCart(false)}/> 
-      <Flex gap={4} alignItems="center" jusytifyContent="center" p={4}>
+      <Flex gap={4} alignItems="center" justifyContent="center" p={4}>
         <Text fontSize="2xl">Cart Items</Text>
         <Text fontSize="md" color="gray.200">({totalQty} items)</Text>
       </Flex>
@@ -44,7 +54,8 @@ const Cart = () => {
           <Text>Subtotal</Text>
           <Text>${totalPrice}</Text>
         </Flex>
-        <Button
+        <Button 
+          onClick={handleBuy}
           w="40%"
           borderRadius="0"
           _hover={{ bg: "teal.400", color: "white" }}

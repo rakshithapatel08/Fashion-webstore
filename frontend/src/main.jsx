@@ -9,6 +9,7 @@ import Layout from '../components/Layout.jsx';
 import AppContextWrapper from '../context/appContext';
 import DetailsPage from '../pages/DetailsPage.jsx';
 import './index.css';
+import Success from '../pages/Success.jsx';
 
 const routes = createBrowserRouter([{
   path: "/",
@@ -30,6 +31,10 @@ const routes = createBrowserRouter([{
       path: "/products/:id",
       element: <DetailsPage/>,
     },
+    {
+      path: "/success",
+      element: <Success/>
+    }
   ]
 }]);
 

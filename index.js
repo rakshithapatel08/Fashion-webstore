@@ -6,9 +6,14 @@ const express = require("express");
 require("dotenv").config();
 const Garment = require("./models/database");
 const cors = require("cors");
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+const Mailjet = require ('node-mailjet');
+const mailjet = Mailjet.apiConnect(process.env.EMAIL_API_KEY, process.env.EMAIL_API_SECRET_KEY);
 
 const app = express(); // returns server object
+
 app.use(cors());
+app.use(express.json());
 
 app.get("/", (request, response) => {
     response.send("backend");
@@ -39,6 +44,98 @@ app.get("/api/products/:id", (request, response) => {
         response.json(result);
     })
     .catch(error => console.log(error))
+});
+
+// stripe post request
+app.post('/api/payment', async (request, response) => {
+
+    const cartData = request.body;
+
+    const params = {
+
+        // right side
+
+        submit_type: "pay",
+        mode: 'payment',
+        billing_address_collection: "auto",
+        currency: "usd",
+        payment_method_types: ["card"],
+        shipping_options: [
+            {
+                shipping_rate: "shr_1OI4KvSDnENANRfHNpD8JP80",
+            },
+            {
+                shipping_rate: "shr_1OI4RHSDnENANRfHlkFn63Bs",
+            },
+            {
+                shipping_rate: "shr_1OI4SXSDnENANRfHtkB8UP55",
+            },
+        ],
+
+        // left side
+
+        line_items:
+          cartData.map((cartItem)=>{
+                return(
+                    {
+                        price_data: {
+                            currency: "usd",
+                            unit_amount: cartItem.price * 100,
+                            product_data: {
+                              name: cartItem.name,
+                              description: `${cartItem.desc.slice(0,10)}...`,
+                              images: [cartItem.garment_img_url],
+                            }
+                        },
+                        quantity: cartItem.quantity,
+                    }
+                )
+            }),
+
+        // redirection
+        success_url: `${request.headers.origin}/success`,
+        cancel_url: `${request.headers.origin}/`,
+      }
+
+    const session = await stripe.checkout.sessions.create(params);
+  
+    response.json(session);
+  });
+
+app.post("/api/email", (req,res) => {
+
+    const email = req.body.email;
+
+    const request = mailjet
+    .post("send", {'version': 'v3.1'})
+    .request({
+      "Messages":[
+        {
+          "From": {
+            "Email": "rakshithapatel0807@gmail.com",
+            "Name": "Rakshitha & Sindhur"
+          },
+          "To": [
+            {
+              "Email": email,
+              "Name": "User"
+            }
+          ],
+          "Subject": "Greetings from StealTeal.",
+          "TextPart": "You have subscribed to our NewsLetter. Get updates on new releases, latest trends and many more..",
+          "HTMLPart": "<h3>Dear User, welcome to <a href=''>StealTeal</a>!</h3><br />May the delivery force be with you!",
+          "CustomID": "AppGettingStartedTest"
+        }
+      ]
+    })
+    request
+      .then((result) => {
+        console.log(result.body);
+        res.status(204).end()
+      })
+      .catch((err) => {
+        console.log(err)
+      })
 });
 
 app.get("/api/tryon", async (request, response) => {
