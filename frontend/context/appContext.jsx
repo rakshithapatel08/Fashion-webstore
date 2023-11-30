@@ -19,7 +19,7 @@ const AppContextWrapper = ({ children }) => {
       setCartData(newCartData);
       setTotalQty(totalQty + 1)
       setTotalPrice(totalPrice + product.price);
-      
+      localStorage.setItem("cart", JSON.stringify(newCartData));
     }
 
     const handleDec = (product) => {
@@ -33,6 +33,7 @@ const AppContextWrapper = ({ children }) => {
         setCartData(newCartData);
         setTotalQty(totalQty - 1)
         setTotalPrice(totalPrice - product.price);
+        localStorage.setItem("cart", JSON.stringify(newCartData));
     }
 
     const handleAdd = (product, qty) => {
@@ -52,6 +53,8 @@ const AppContextWrapper = ({ children }) => {
             const newCartData = cartData?.map(cartItem => cartItem._id === inCartProduct._id ? inCartProduct : cartItem);
 
             setCartData(newCartData);
+
+            localStorage.setItem("cart", JSON.stringify(newCartData));
         }
         else {
             // not In Cart?
@@ -60,6 +63,8 @@ const AppContextWrapper = ({ children }) => {
             const newCartData = [ ...cartData, product]
 
             setCartData(newCartData);
+
+            localStorage.setItem("cart", JSON.stringify(newCartData));
         }
 
         toast.success(`${product.name} added successfully`);
@@ -70,6 +75,7 @@ const AppContextWrapper = ({ children }) => {
         setCartData(newCartData);
         setTotalQty(totalQty - cartProduct.quantity)
         setTotalPrice(totalPrice - cartProduct.quantity * cartProduct.price)
+        localStorage.setItem("cart", JSON.stringify(newCartData));
     }
 
     return (

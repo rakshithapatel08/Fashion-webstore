@@ -1,7 +1,21 @@
 import { Text, Flex, Button, Image } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
+import { useCustomContext } from "../context/appContext";
+import { useEffect } from "react";
+import confettiFunction from "../utils/confetti";
 
 const Success = () => {
+
+  const {setCartData, setTotalQty, setTotalPrice} = useCustomContext();
+
+  useEffect(() => {
+    localStorage?.clear();
+    setCartData([]);
+    setTotalQty(0);
+    setTotalPrice(0);
+    confettiFunction();
+  }, []);
+
   return (
     <Flex justifyContent="center" alignItems="center" flexDirection="column" >
         <Image src="../iconAssets/Payment.gif" mt={0}/> 

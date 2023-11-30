@@ -13,10 +13,34 @@ import MenuComponent from "./MenuComponent";
 import { MdShoppingCart } from "react-icons/md";
 import Cart from "./Cart";
 import { useCustomContext } from "../context/appContext";
+import { useEffect } from "react";
 
 const Navbar = () => {
   const [isMobileTab] = useMediaQuery("(max-width: 700px)");
-  const { showCart, setShowCart, totalQty } = useCustomContext();
+  const { showCart, setShowCart, totalQty, cartData, setCartData, setTotalQty, setTotalPrice } = useCustomContext();
+
+  useEffect(() => {
+    
+    async function localRetrieve() {
+      if(cartData.length === 0 && localStorage) {
+        const retrievedCart = await JSON.parse(localStorage.getItem("cart"))
+        setCartData(retrievedCart || []);
+
+        const retrievedQty = retrievedCart.reduce((sum, cartItem) => {
+          return sum + cartItem.quantity
+        }, 0);
+        setTotalQty(retrievedQty);
+
+        const retrievedPrice = retrievedCart.reduce((sum, cartItem) => {
+          return sum + cartItem.price * cartItem.quantity
+        }, 0);
+        setTotalPrice(retrievedPrice);
+      }
+    }
+
+    localRetrieve();
+
+  }, []);
 
   return (
     <Box>

@@ -47,16 +47,21 @@ const CardComponent = ({ product }) => {
         <Text color="gray.200" fontSize="sm" pb={5} fontWeight="500">
           {product.desc.slice(0,30)}...
         </Text>
-        <Flex flexWrap="wrap" gap={4} pb={4}>
+        <Flex flexWrap="wrap" gap={4} pb={4} justifyContent="center">
         <Button borderRadius="none" color="white" bg="teal.500" fontSize="md" _hover={{bg:"teal.600"}} 
         onClick={()=>{
           handleAdd(product, qty)       
           }}>
           Add to Cart
         </Button>
-        <Button borderRadius="none" color="gray.800" bg="white" fontSize="md" _hover={{bg:"gray.200"}}>
-          Try On
-        </Button>
+        {
+          product.category === "tops" && 
+          <Link to="/tryon">
+            <Button borderRadius="none" color="gray.800" bg="white" fontSize="md" _hover={{bg:"gray.200"}}>
+              Try On
+            </Button>
+          </Link>
+        }
         </Flex>
       </Flex>
     </Flex>
