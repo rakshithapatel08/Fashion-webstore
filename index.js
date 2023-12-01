@@ -160,7 +160,8 @@ app.post("/api/email", (req, res) => {
 });
 
 app.get("/api/tryon", async (request, response) => {
-
+    const { gender, tops } = request.query
+    
     function getAuthenticationHeader(json = false) {
         var pbkdf2 = require('pbkdf2')
         let time = parseInt(Date.now() / 1000);
@@ -183,13 +184,14 @@ app.get("/api/tryon", async (request, response) => {
         }
     }
 
-    model_id = "1697455153"
+    model_id = gender === "female" ? "1697455153" :"1401921649"
     const data = JSON.stringify({
         "garments": {
-            "tops": "ea5b690653ec2ecaf15cba2a84bc899d_P6ASVORCbQYT",
+            "tops": tops,
             "bottoms": "ea5b690653ec2ecaf15cba2a84bc899d_LoItYoKztjWy"
         },
         "model_id": model_id,
+        "background": "studio"
     });
 
     const responseData = await fetch('https://api.revery.ai/console/v1/request_tryon', {

@@ -30,10 +30,10 @@ fetchApi()
 .then((result) => {
     const garmentObject = {
         ...result,
-        gender: "male",
+        gender: "female",
         category: "tops",
-        garment_img_url: "https://media.revery.ai/revery_client_images/symbol_184875/in_origin.png",
-        name:"Athletic Performance Tee",
+        garment_img_url: "https://media.revery.ai/revery_client_images/symbol_179805/in_origin.png",
+        name:"test2",
         price:27,
         desc:"Unleash your inner athlete with our performance tee. Designed for both comfort and functionality, this hoodie features moisture-wicking fabric to keep you cool and dry during workouts. The ergonomic design and stretchy material provide freedom of movement, making it an ideal choice for your active lifestyle. Upgrade your fitness gear with this high-performance hoodie"
     }

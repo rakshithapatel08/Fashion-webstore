@@ -2,10 +2,11 @@ import { Flex, Box, Image, Text, Button } from "@chakra-ui/react";
 import { useCustomContext } from "../context/appContext";
 import { Link } from "react-router-dom"
 import { useEffect } from "react";
+import tryOn from "../utils/tryonFunction";
 
 const CardComponent = ({ product }) => {
 
-  const { qty, handleAdd, setQty } = useCustomContext();
+  const { qty, handleAdd, setQty, setData, setIsFemale } = useCustomContext();
   
   useEffect(()=>{
     setQty(1)
@@ -57,7 +58,10 @@ const CardComponent = ({ product }) => {
         {
           product.category === "tops" && 
           <Link to="/tryon">
-            <Button borderRadius="none" color="gray.800" bg="white" fontSize="md" _hover={{bg:"gray.200"}}>
+            <Button borderRadius="none" color="gray.800" bg="white" fontSize="md" _hover={{bg:"gray.200"}} onClick={() => {
+              setData(tryOn(product.garment_id, product.gender))
+              setIsFemale(product.gender === "female" ? true : false)
+            }}>
               Try On
             </Button>
           </Link>
