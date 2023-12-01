@@ -62,7 +62,7 @@ const Navbar = () => {
         zIndex="100"
       >
         <Link href="/">
-          <Text fontSize="3xl" color="whiteAlpha.700" fontWeight="bold">
+          <Text fontSize="3xl" color="whiteAlpha.800" fontWeight="bold">
             STEAL
             <Box as="span" color="teal.400">
               TEAL
