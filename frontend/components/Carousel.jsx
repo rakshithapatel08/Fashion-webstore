@@ -5,7 +5,7 @@ import "slick-carousel/slick/slick-theme.css";
 import "../styles/carousel.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Box, useMediaQuery } from "@chakra-ui/react";
+import { Box, useMediaQuery, Flex, Spinner } from "@chakra-ui/react";
 
 const Carousel = () => {
   const [data, setData] = useState(null);
@@ -33,8 +33,18 @@ const Carousel = () => {
     slidesToScroll: 1,
   };
 
-  if (!data) {
-    return "Loading...";
+  if(!data){
+    return (
+        <Flex justifyContent="center" alignItems="center" minH="60vh">
+        <Spinner
+            thickness="10px"
+            speed="0.65s"
+            emptyColor="gray.200"
+            color="teal.400"
+            size="xl"
+        />
+        </Flex>
+    )
   }
 
   return (

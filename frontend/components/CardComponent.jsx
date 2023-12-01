@@ -6,18 +6,18 @@ import axios from "axios";
 
 const CardComponent = ({ product }) => {
 
-  const { qty, handleAdd, setQty, setData, setIsFemale } = useCustomContext();
+  const { qty, handleAdd, setQty, setData, setIsFemale, setIsClicked } = useCustomContext();
     
   useEffect(()=>{
     setQty(1)
   },[]);
 
-  const tryOn = (id,gender) => {
+  const tryOn = (id, gender) => {
     axios
       .get(`http://localhost:3001/api/tryon?tops=${id}&&gender=${gender}`)
       .then((result) => {
-        console.log(result.data)
         setData(result.data);
+        setIsClicked(false);
       })
       .catch((error) => console.log(error));
   };
@@ -71,6 +71,7 @@ const CardComponent = ({ product }) => {
             <Button borderRadius="none" color="gray.800" bg="white" fontSize="md" _hover={{bg:"gray.200"}} onClick={() => {
               tryOn(product.garment_id, product.gender)
               setIsFemale(product.gender === "female" ? true : false)
+              setIsClicked(true)
             }}>
               Try On
             </Button>

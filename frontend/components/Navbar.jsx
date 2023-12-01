@@ -84,9 +84,9 @@ const Navbar = () => {
             <Link to="/">
               <ListItem _hover={{ color: "teal.400" }}>Home</ListItem>
             </Link>
-            <Link to="/#about">
+            <a href="/#about">
               <ListItem _hover={{ color: "teal.400" }}>About</ListItem>
-            </Link>
+            </a>
             <Link to="/products">
               <ListItem _hover={{ color: "teal.400" }}>Collections</ListItem>
             </Link>

@@ -12,6 +12,7 @@ const AppContextWrapper = ({ children }) => {
     const [cartData, setCartData ] = useState([]);
     const [data, setData] = useState({});
     const [isFemale, setIsFemale] = useState(true);
+    const [isClicked, setIsClicked] = useState(false);
 
     const handleInc = (product) => {
       product.quantity += 1;
@@ -99,7 +100,9 @@ const AppContextWrapper = ({ children }) => {
             data,
             setData,
             isFemale,
-            setIsFemale
+            setIsFemale,
+            isClicked,
+            setIsClicked
         }}>
             {children}
         </AppContext.Provider>

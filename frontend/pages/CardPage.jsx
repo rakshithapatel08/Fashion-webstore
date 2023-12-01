@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import axios from "axios"
 import CardComponent from "../components/CardComponent"
-import { Flex, Text, Box, useMediaQuery } from "@chakra-ui/react"
+import { Flex, Text, Box, useMediaQuery, Spinner } from "@chakra-ui/react"
 
 const CardPage = () => {
     const [data, setData] = useState(null);
@@ -13,7 +13,17 @@ const CardPage = () => {
     }, [])
 
     if(!data){
-        return "loading ..."
+        return (
+            <Flex justifyContent="center" alignItems="center" minH="60vh">
+            <Spinner
+                thickness="10px"
+                speed="0.65s"
+                emptyColor="gray.200"
+                color="teal.400"
+                size="xl"
+            />
+            </Flex>
+        )
     }
 
     return (
