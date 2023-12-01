@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Image, Box, Flex, Heading, Icon, IconButton } from "@chakra-ui/react";
+import { Image, Box, Flex, Heading,  IconButton } from "@chakra-ui/react";
 import axios from "axios";
 import TryOnCard from "../components/TryOnCard";
 import { MdMale, MdFemale } from "react-icons/md";

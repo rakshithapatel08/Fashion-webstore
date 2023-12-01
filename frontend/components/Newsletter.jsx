@@ -14,6 +14,11 @@ const Newsletter = () => {
       toast.success(`You are subscribed with ${email}`)
       setEmail("");
     })
+    .catch((err)=>{
+      toast.error(err.response.data.message);
+      setEmail("");
+    })
+    
   }
  
   return (
