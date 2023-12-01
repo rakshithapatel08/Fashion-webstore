@@ -165,7 +165,7 @@ app.get("/api/tryon", async (request, response) => {
     model_id = "1697455153"
     const data = JSON.stringify({
         "garments": {
-            "tops":"ea5b690653ec2ecaf15cba2a84bc899d_RCbQYT1t5aLq",
+            "tops":"ea5b690653ec2ecaf15cba2a84bc899d_P6ASVORCbQYT",
             "bottoms": "ea5b690653ec2ecaf15cba2a84bc899d_LoItYoKztjWy"
         },
         "model_id": model_id,
