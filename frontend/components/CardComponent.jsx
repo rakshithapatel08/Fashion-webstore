@@ -2,15 +2,25 @@ import { Flex, Box, Image, Text, Button } from "@chakra-ui/react";
 import { useCustomContext } from "../context/appContext";
 import { Link } from "react-router-dom"
 import { useEffect } from "react";
-import tryOn from "../utils/tryonFunction";
+import axios from "axios";
 
 const CardComponent = ({ product }) => {
 
   const { qty, handleAdd, setQty, setData, setIsFemale } = useCustomContext();
-  
+    
   useEffect(()=>{
     setQty(1)
   },[]);
+
+  const tryOn = (id,gender) => {
+    axios
+      .get(`http://localhost:3001/api/tryon?tops=${id}&&gender=${gender}`)
+      .then((result) => {
+        console.log(result.data)
+        setData(result.data);
+      })
+      .catch((error) => console.log(error));
+  };
 
   return (
     <Flex
@@ -59,7 +69,7 @@ const CardComponent = ({ product }) => {
           product.category === "tops" && 
           <Link to="/tryon">
             <Button borderRadius="none" color="gray.800" bg="white" fontSize="md" _hover={{bg:"gray.200"}} onClick={() => {
-              setData(tryOn(product.garment_id, product.gender))
+              tryOn(product.garment_id, product.gender)
               setIsFemale(product.gender === "female" ? true : false)
             }}>
               Try On

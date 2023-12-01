@@ -160,8 +160,8 @@ app.post("/api/email", (req, res) => {
 });
 
 app.get("/api/tryon", async (request, response) => {
-    const { gender, tops } = request.query
-    
+    const { gender, tops } = request.query;
+    console.log(tops)
     function getAuthenticationHeader(json = false) {
         var pbkdf2 = require('pbkdf2')
         let time = parseInt(Date.now() / 1000);
@@ -185,13 +185,13 @@ app.get("/api/tryon", async (request, response) => {
     }
 
     model_id = gender === "female" ? "1697455153" :"1401921649"
+    // model_id = "1697455153"
     const data = JSON.stringify({
         "garments": {
             "tops": tops,
-            "bottoms": "ea5b690653ec2ecaf15cba2a84bc899d_LoItYoKztjWy"
+            "bottoms": "98f5f7e9c2bdb0c83d4cc7c819cb617a_KEfu3RaxHn10"
         },
-        "model_id": model_id,
-        "background": "studio"
+        "model_id": model_id,       
     });
 
     const responseData = await fetch('https://api.revery.ai/console/v1/request_tryon', {
@@ -202,8 +202,8 @@ app.get("/api/tryon", async (request, response) => {
     )
 
     const tryOnData = await responseData.json();
-
-    response.json(tryOnData);
+    console.log(tryOnData)
+    response.json(tryOnData);    
 });
 
 const PORT = 3001;

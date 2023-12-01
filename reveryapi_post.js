@@ -19,12 +19,19 @@ function getAuthenticationHeader(json = false) {
         })
     }
 }
-
 const data = JSON.stringify({
-    "category": "tops",
-    "gender": "female",
-    "garment_img_url": "https://media.revery.ai/revery_client_images/symbol_179805/in_origin.png"
+    "category": "bottoms",
+    "bottom_sub_category": "pants",
+  "gender": "female",
+    "garment_img_url": "https://revery-integration-tools.s3.us-east-2.amazonaws.com/API_website/bottoms.jpeg"
 });
+
+
+// const data = JSON.stringify({
+//     "category": "tops",
+//     "gender": "female",
+//     "garment_img_url": "https://revery-integration-tools.s3.us-east-2.amazonaws.com/API_website/tops.jpeg"
+// });
 
 
 async function fetchApi() {
