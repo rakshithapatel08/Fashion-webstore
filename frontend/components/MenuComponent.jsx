@@ -1,8 +1,13 @@
 import { Menu, MenuButton, MenuItem, MenuList, IconButton } from "@chakra-ui/react";
 import { HamburgerIcon, InfoIcon } from "@chakra-ui/icons";
 import { MdHome, MdOutlineShoppingCart, MdOutlineShoppingBag } from "react-icons/md";
+import { Link } from "react-router-dom";
+import { useCustomContext } from "../context/appContext";
 
 const MenuComponent = () => {
+
+  const { setShowCart } = useCustomContext();
+
   return (
     <Menu>
       <MenuButton
@@ -11,17 +16,20 @@ const MenuComponent = () => {
         variant="outline"
       />
       <MenuList>
-        <MenuItem icon={<MdHome />} >
+        <Link to="/"><MenuItem icon={<MdHome />} >
           Home
         </MenuItem>
-        <MenuItem icon={<InfoIcon />} >
+        </Link>
+        <Link to="/#about"><MenuItem icon={<InfoIcon />} >
           About
         </MenuItem>
-        <MenuItem icon={<MdOutlineShoppingBag/>}>
+        </Link>
+        <Link to="/products"><MenuItem icon={<MdOutlineShoppingBag/>}>
           Collections
         </MenuItem>
-        <MenuItem icon={<MdOutlineShoppingCart />}>
-          Add To Cart
+        </Link>
+        <MenuItem icon={<MdOutlineShoppingCart />} onClick={() => setShowCart(true)}>
+          Cart
         </MenuItem>
       </MenuList>
     </Menu>
