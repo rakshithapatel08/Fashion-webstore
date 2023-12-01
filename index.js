@@ -7,9 +7,9 @@ require("dotenv").config();
 const Garment = require("./models/database");
 const cors = require("cors");
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
-const Mailjet = require ('node-mailjet');
+const Mailjet = require('node-mailjet');
 const mailjet = Mailjet.apiConnect(process.env.EMAIL_API_KEY, process.env.EMAIL_API_SECRET_KEY);
-
+const User = require("./models/users")
 const app = express(); // returns server object
 
 app.use(cors());
@@ -36,14 +36,14 @@ app.get("/api/products", (request, response) => {
 });
 
 app.get("/api/products/:id", (request, response) => {
-    
+
     const id = request.params.id;
 
     Garment.findById(id)
-    .then(result => {
-        response.json(result);
-    })
-    .catch(error => console.log(error))
+        .then(result => {
+            response.json(result);
+        })
+        .catch(error => console.log(error))
 });
 
 // stripe post request
@@ -75,16 +75,16 @@ app.post('/api/payment', async (request, response) => {
         // left side
 
         line_items:
-          cartData.map((cartItem)=>{
-                return(
+            cartData.map((cartItem) => {
+                return (
                     {
                         price_data: {
                             currency: "usd",
                             unit_amount: cartItem.price * 100,
                             product_data: {
-                              name: cartItem.name,
-                              description: `${cartItem.desc.slice(0,10)}...`,
-                              images: [cartItem.garment_img_url],
+                                name: cartItem.name,
+                                description: `${cartItem.desc.slice(0, 10)}...`,
+                                images: [cartItem.garment_img_url],
                             }
                         },
                         quantity: cartItem.quantity,
@@ -95,47 +95,68 @@ app.post('/api/payment', async (request, response) => {
         // redirection
         success_url: `${request.headers.origin}/success`,
         cancel_url: `${request.headers.origin}/`,
-      }
+    }
 
     const session = await stripe.checkout.sessions.create(params);
-  
-    response.json(session);
-  });
 
-app.post("/api/email", (req,res) => {
+    response.json(session);
+});
+
+app.post("/api/email", (req, res) => {
 
     const email = req.body.email;
 
-    const request = mailjet
-    .post("send", {'version': 'v3.1'})
-    .request({
-      "Messages":[
-        {
-          "From": {
-            "Email": "rakshithapatel0807@gmail.com",
-            "Name": "Rakshitha & Sindhur"
-          },
-          "To": [
-            {
-              "Email": email,
-              "Name": "User"
-            }
-          ],
-          "Subject": "Greetings from StealTeal.",
-          "TextPart": "You have subscribed to our NewsLetter. Get updates on new releases, latest trends and many more..",
-          "HTMLPart": "<h3>Dear User, welcome to <a href=''>StealTeal</a>!</h3><br />May the delivery force be with you!",
-          "CustomID": "AppGettingStartedTest"
-        }
-      ]
-    })
-    request
-      .then((result) => {
-        console.log(result.body);
-        res.status(204).end()
-      })
-      .catch((err) => {
-        console.log(err)
-      })
+    const user = new User({userEmail: email });
+
+    const isPresent = async () => {
+        // user already present or not
+        const userData = await User.find({userEmail: email})
+         return userData;
+       }
+
+       isPresent().then(result => {
+           if(result.length === 0) {
+            const request = mailjet
+            .post("send", { 'version': 'v3.1' })
+            .request({
+                "Messages": [
+                    {
+                        "From": {
+                            "Email": "rakshithapatel0807@gmail.com",
+                            "Name": "Rakshitha & Sindhur"
+                        },
+                        "To": [
+                            {
+                                "Email": email,
+                                "Name": "User"
+                            }
+                        ],
+                        "Subject": "Greetings from StealTeal.",
+                        "TextPart": "You have subscribed to our NewsLetter. Get updates on new releases, latest trends and many more..",
+                        "HTMLPart": "<h3>Dear User, welcome to <a href=''>StealTeal</a>!</h3><br />May the delivery force be with you!",
+                        "CustomID": "AppGettingStartedTest"
+                    }
+                ]
+            })
+        request
+            .then(() => {
+                user.save()
+                    .then(() => {
+                        console.log("Subscribed Successfully");
+                    })
+                    .catch((error) => {
+                        console.log(error.message);
+                    })
+                res.status(204).end()
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+           }
+           else(
+            res.status(400).json({message:"You have already subscribed!"})
+           )
+       })
 });
 
 app.get("/api/tryon", async (request, response) => {
@@ -165,19 +186,19 @@ app.get("/api/tryon", async (request, response) => {
     model_id = "1697455153"
     const data = JSON.stringify({
         "garments": {
-            "tops":"ea5b690653ec2ecaf15cba2a84bc899d_P6ASVORCbQYT",
+            "tops": "ea5b690653ec2ecaf15cba2a84bc899d_P6ASVORCbQYT",
             "bottoms": "ea5b690653ec2ecaf15cba2a84bc899d_LoItYoKztjWy"
         },
         "model_id": model_id,
     });
 
     const responseData = await fetch('https://api.revery.ai/console/v1/request_tryon', {
-            method: 'POST',
-            headers: getAuthenticationHeader(json = true),
-            body: data
-        }
+        method: 'POST',
+        headers: getAuthenticationHeader(json = true),
+        body: data
+    }
     )
-    
+
     const tryOnData = await responseData.json();
 
     response.json(tryOnData);
