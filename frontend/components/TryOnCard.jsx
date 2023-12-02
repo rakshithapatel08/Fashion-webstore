@@ -8,7 +8,7 @@ const TryOnCard= ({ product }) => {
 
   const tryOn = (id,gender) => {
     axios
-      .get(`http://localhost:3001/api/tryon?tops=${id}&&gender=${gender}`)
+      .get(`/api/tryon?tops=${id}&&gender=${gender}`)
       .then((result) => {
         console.log(result.data)
         setData(result.data);

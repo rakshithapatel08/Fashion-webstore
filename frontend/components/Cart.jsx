@@ -12,7 +12,7 @@ const Cart = () => {
   const { setShowCart, totalQty, totalPrice, cartData } = useCustomContext();
   
   const handleBuy = () => {
-    axios.post("http://localhost:3001/api/payment", cartData)
+    axios.post("/api/payment", cartData)
     .then(session => session.data)
     .then(data => {
       if(data.url) {

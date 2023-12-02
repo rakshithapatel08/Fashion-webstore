@@ -26,7 +26,7 @@ const TryOnPage = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3001/api/products")
+      .get("/api/products")
       .then((res) => setProducts(res.data));
   }, []);
 

@@ -14,6 +14,7 @@ const app = express(); // returns server object
 
 app.use(cors());
 app.use(express.json());
+app.use(express.static("dist"));
 
 app.get("/", (request, response) => {
     response.send("backend");

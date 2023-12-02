@@ -14,7 +14,7 @@ const Carousel = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3001/api/products")
+      .get("/api/products")
       .then((res) => setData(res.data));
   }, []);
 

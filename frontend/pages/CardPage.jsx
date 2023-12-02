@@ -8,7 +8,7 @@ const CardPage = () => {
     const [ isMobile ] = useMediaQuery("(max-width: 600px)");
     
     useEffect(() => {
-        axios.get("http://localhost:3001/api/products")
+        axios.get("/api/products")
             .then((res) => setData(res.data))
     }, [])
 

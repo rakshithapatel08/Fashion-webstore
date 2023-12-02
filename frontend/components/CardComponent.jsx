@@ -14,7 +14,7 @@ const CardComponent = ({ product }) => {
 
   const tryOn = (id, gender) => {
     axios
-      .get(`http://localhost:3001/api/tryon?tops=${id}&&gender=${gender}`)
+      .get(`/api/tryon?tops=${id}&&gender=${gender}`)
       .then((result) => {
         setData(result.data);
         setIsClicked(false);

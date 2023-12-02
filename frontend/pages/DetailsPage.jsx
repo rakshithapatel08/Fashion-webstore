@@ -10,7 +10,7 @@ const DetailsPage = () => {
   const { setQty } = useCustomContext();
 
   useEffect(()=>{
-    axios.get(`http://localhost:3001/api/products/${id}`)
+    axios.get(`/api/products/${id}`)
     .then(result => {
       setProduct(result.data);
       setQty(1);

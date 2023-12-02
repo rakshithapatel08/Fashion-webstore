@@ -9,7 +9,7 @@ const Newsletter = () => {
   const [ email, setEmail ] = useState("")
 
   const handleSubscribe = () => {
-    axios.post("http://localhost:3001/api/email", { email })
+    axios.post("/api/email", { email })
     .then(() => {
       toast.success(`You are subscribed with ${email}`)
       setEmail("");
