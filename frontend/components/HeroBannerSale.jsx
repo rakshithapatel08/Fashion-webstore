@@ -7,7 +7,7 @@ import {
   Text,
   useMediaQuery,
 } from "@chakra-ui/react";
-import heroBanner from "../iconAssets/heroBanner.svg";
+import heroBanner from "/iconAssets/heroBanner.svg";
 import { Link } from "react-router-dom";
 
 const HeroBannerSale = () => {

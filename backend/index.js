@@ -11,6 +11,7 @@ const Mailjet = require('node-mailjet');
 const mailjet = Mailjet.apiConnect(process.env.EMAIL_API_KEY, process.env.EMAIL_API_SECRET_KEY);
 const User = require("./models/users")
 const app = express(); // returns server object
+const path = require("path");
 
 app.use(cors());
 app.use(express.json());
@@ -207,7 +208,11 @@ app.get("/api/tryon", async (request, response) => {
     response.json(tryOnData);    
 });
 
-const PORT = 3001;
+app.get('/*', function(req,res) {
+    res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+});
+
+const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
     console.log(`Server has started at port ${PORT}`)
 });
