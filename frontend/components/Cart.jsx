@@ -31,10 +31,10 @@ const Cart = () => {
       w={isMobile ? "100%" : isTab ? "70%" : "40%"}
       position="fixed"
       zIndex={200}
-      top="5%"
+      top={isMobile ? "0%" : "5%" }
       left="50%"
       transform="translate(-50%)"
-      h="90%"
+      h={isMobile ? "100%" : "90%" }
     >
       <Icon as={CloseIcon} position="absolute" right="4%" top="4%" cursor="pointer" onClick={() => setShowCart(false)}/> 
       <Flex gap={4} alignItems="center" justifyContent="center" p={4}>

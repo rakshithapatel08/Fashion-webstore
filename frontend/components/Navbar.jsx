@@ -26,15 +26,15 @@ const Navbar = () => {
         const retrievedCart = await JSON.parse(localStorage.getItem("cart"))
         setCartData(retrievedCart || []);
 
-        const retrievedQty = retrievedCart.reduce((sum, cartItem) => {
-          return sum + cartItem.quantity
+        const retrievedQty = retrievedCart?.reduce((sum, cartItem) => {
+          return sum + cartItem.quantity 
         }, 0);
-        setTotalQty(retrievedQty);
+        setTotalQty(retrievedQty || 0);
 
-        const retrievedPrice = retrievedCart.reduce((sum, cartItem) => {
+        const retrievedPrice = retrievedCart?.reduce((sum, cartItem) => {
           return sum + cartItem.price * cartItem.quantity
         }, 0);
-        setTotalPrice(retrievedPrice);
+        setTotalPrice(retrievedPrice || 0);
       }
     }
 
