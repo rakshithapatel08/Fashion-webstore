@@ -22,8 +22,8 @@ function getAuthenticationHeader(json = false) {
 const data = JSON.stringify({
     "category": "bottoms",
     "bottom_sub_category": "pants",
-  "gender": "female",
-    "garment_img_url": "https://revery-integration-tools.s3.us-east-2.amazonaws.com/API_website/bottoms.jpeg"
+    "gender": "female",
+    "garment_img_url": "https://media.revery.ai/revery_client_images/symbol_188870/in_origin.png"
 });
 
 

@@ -32,10 +32,10 @@ fetchApi()
         ...result,
         gender: "female",
         category: "bottoms",
-        garment_img_url: "https://revery-integration-tools.s3.us-east-2.amazonaws.com/API_website/bottoms.jpeg",
-        name:"testing pant",
-        price:27,
-        desc:"Unleash your inner athlete with our performance tee. Designed for both comfort and functionality, this hoodie features moisture-wicking fabric to keep you cool and dry during workouts. The ergonomic design and stretchy material provide freedom of movement, making it an ideal choice for your active lifestyle. Upgrade your fitness gear with this high-performance hoodie"
+        garment_img_url: "https://media.revery.ai/revery_client_images/symbol_188870/in_origin.png",
+        name:"Flowy Pink Palazzo",
+        price:32,
+        desc:"Introducing our chic and comfortable palazzo pants — the epitome of effortless style and versatility. Crafted from a lightweight and breathable fabric, these palazzo pants are designed to make a statement while keeping you cool and comfortable throughout the day.",
     }
 
     const clothes = new Garment(garmentObject);

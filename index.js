@@ -189,7 +189,7 @@ app.get("/api/tryon", async (request, response) => {
     const data = JSON.stringify({
         "garments": {
             "tops": tops,
-            "bottoms": "98f5f7e9c2bdb0c83d4cc7c819cb617a_KEfu3RaxHn10"
+            "bottoms": gender ==="female" ? "05a4251e92c59431cb6f365e9f585311_SVORCbQYT1t5" : "05a4251e92c59431cb6f365e9f585311_aFlEStGCFqGw"
         },
         "model_id": model_id,       
     });
