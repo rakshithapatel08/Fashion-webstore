@@ -1,4 +1,3 @@
-
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import { ChakraProvider } from "@chakra-ui/react";
@@ -10,6 +9,7 @@ import AppContextWrapper from '../context/appContext';
 import DetailsPage from '../pages/DetailsPage.jsx';
 import './index.css';
 import Success from '../pages/Success.jsx';
+import Error404 from '../pages/Error404.jsx';
 
 const routes = createBrowserRouter([{
   path: "/",
@@ -34,6 +34,10 @@ const routes = createBrowserRouter([{
     {
       path: "/success",
       element: <Success/>
+    },
+    {
+      path: "*",
+      element: <Error404/>
     }
   ]
 }]);

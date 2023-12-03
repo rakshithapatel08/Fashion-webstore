@@ -45,7 +45,12 @@ app.get("/api/products/:id", (request, response) => {
         .then(result => {
             response.json(result);
         })
-        .catch(error => console.log(error))
+        .catch(error => {
+            console.log(error);
+            response.status(404).json({
+                error:"Page Not Found"
+            })
+        })
 });
 
 // stripe post request
