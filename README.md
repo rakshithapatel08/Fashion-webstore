@@ -41,4 +41,23 @@ What makes our web app so special? ( Caution: Applicable only upto 100 Try On Ca
 * stripe ---> for payment gateway
 * node-mailjet ---> for email services
 
+# Technologies used
+
+* ReactJs
+* Chakra UI
+* ReveryAI API
+* NodeJS
+* Express
+* MongoDB
+* Render
+* Git/GitHub
+
 # Deployed on render
+
+https://stealteal.onrender.com/ 
+The insights of the web-app can also be seen on - https://clipchamp.com/watch/eQbqE5KhWzC , a small video clip showcasing the features of StealTeal.
+
+# Database Model created on MongoDb
+
+![Screenshot 2023-12-04 135546](https://github.com/rakshithapatel08/Fashion-webstore/assets/109893073/253b1cf9-dab9-46d3-a031-688cd2fa836e) --> garments database
+![Screenshot 2023-12-04 135719](https://github.com/rakshithapatel08/Fashion-webstore/assets/109893073/46696c55-e199-46fc-9496-fb0392ec3957) --> users database
