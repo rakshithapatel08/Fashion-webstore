@@ -29,14 +29,6 @@ app.get("/api/products", (request, response) => {
         .catch(error => console.log(error))
 });
 
-app.get("/api/products", (request, response) => {
-    Garment.find({})
-        .then((garments) => {
-            response.status(200).json(garments);
-        })
-        .catch(error => console.log(error))
-});
-
 app.get("/api/products/:id", (request, response) => {
 
     const id = request.params.id;
@@ -140,7 +132,7 @@ app.post("/api/email", (req, res) => {
                         ],
                         "Subject": "Greetings from StealTeal.",
                         "TextPart": "You have subscribed to our NewsLetter. Get updates on new releases, latest trends and many more..",
-                        "HTMLPart": "<h3>Dear User, welcome to <a href=''>StealTeal</a>!</h3><br />May the delivery force be with you!",
+                        "HTMLPart": "<h3>Dear User, welcome to <a href='https://stealteal.onrender.com/'>StealTeal</a>!</h3><br />May the delivery force be with you!",
                         "CustomID": "AppGettingStartedTest"
                     }
                 ]
